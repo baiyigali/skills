@@ -65,6 +65,40 @@ wechat-auto-publish draft "文章.md" "封面.png" "文章标题" \
 - 摘要可选，不传时微信会自动生成。
 - 命令行参数中包含 secret，执行后不要把含 secret 的完整命令原样回显给用户。
 
+### 4.1 多图文发布（一次草稿最多 8 篇）
+
+CLI 的 `draft` 只支持单篇。多图文（一条草稿内多篇文章）需直接调用底层库 `wechat_publish.push_articles`（上限 8 篇，第一篇为头条封面文章）：
+
+```bash
+# 第 1 步：把每篇 md 渲染成 html（与 draft 命令内部同款渲染）
+python3 -c "
+from wechat_auto_publish.pipeline import render
+render('文章A.md', '文章A.html')
+render('文章B.md', '文章B.html')
+"
+
+# 第 2 步：合成一个多图文草稿推送
+python3 - <<'EOF'
+from wechat_publish import push_articles
+
+media_id = push_articles(
+    appid="你的AppID",
+    secret="你的AppSecret",
+    author="作者名",
+    articles=[
+        {"html_path": "文章A.html", "title": "标题A", "cover_path": "文章A.png", "digest": "摘要A（可选，120字内）"},
+        {"html_path": "文章B.html", "title": "标题B", "cover_path": "文章B.png"},
+    ],
+)
+print("DRAFT_MEDIA_ID:", media_id)
+EOF
+```
+
+- 硬性限制：每草稿 ≤8 篇；单篇 title ≤32 字、digest ≤120 字、author ≤16 字。
+- 每篇文章都需要独立的封面图；`source_url`（可选）可设"阅读原文"链接。
+- 凭据同样只在本次调用中使用，不写入任何文件。
+- `publish_now=False`（默认）仅存草稿箱；个人未认证号无 freepublish 权限，保持默认由人工发表。
+
 ### 5. 结果交付
 
 - **成功**：报告文章标题与草稿 `media_id`。
