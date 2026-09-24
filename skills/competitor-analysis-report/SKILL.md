@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: baiyigali
-  display-name: 程序员白大力
+  display-name: 程序员白大力（微信公众号）
   version: "1.1"
   repository: https://github.com/baiyigali/skills
 tags:
