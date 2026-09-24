@@ -84,8 +84,9 @@ tags:
 ### 5. 阶段④：封面图
 
 1. 用 image_gen（`seedream_5.0_flash`）生成：**电影感写实、高画质**；人物为中国人/亚洲人；**画面绝对无任何文字**（含门牌号/价格牌/指示牌/数字，出现就重生成）。尺寸 `width=2048 height=870`（约 2.35:1）。
-2. 生成后把云 URL 填到文章标题下方 `![封面](云URL)`。
-3. 下载为**真实 PNG**（不是改后缀）：`curl -sL <云URL> -o /tmp/raw.img && sips -s format png /tmp/raw.img --out "<主名>.png"`，用 `file` 确认是 PNG。
+2. 文章里封面一律用**本地相对路径**插入标题下方：`![封面](<主名>.png)`，**不要写云 URL**。本地文件即源文件。
+3. 把生成图下载为**真实 PNG**（不是改后缀）：`curl -sL <云URL> -o /tmp/raw.img && sips -s format png /tmp/raw.img --out "<主名>.png"`，用 `file` 确认是 PNG，文件名与 md 同名、同目录。
+4. 发布时由 `wechat-article-publish` 自动读取这个本地 png、上传到微信 CDN、临时替换成 mmbiz 地址，写作环节不需要预先取云 URL。
 
 ### 6. 输出落盘
 
