@@ -26,14 +26,26 @@ Render a finished Markdown article into WeChat Official Account styling and push
 npx skills add baiyigali/skills --skill wechat-article-publish
 ```
 
+### 3. `it-hotspot-article` — IT 热点追热点写文
+
+Chase real-time domestic IT/internet trending events and turn them into a publish-ready tech-explainer: three-phase pipeline (72-hour hotspot monitoring → IT-relevance filtering → fixed-template writing), cinematic cover image generated locally, professional tone with zero clickbait.
+
+实时检索国内 IT/互联网热点（72 小时窗口、多源交叉验证），自动筛选最适合技术科普的事件，按固定模板产出事件复盘、技术拆解、常见误区、实操指引的公众号技术文，并生成电影感写实封面图。专业调性优先，不做标题党。
+
+```bash
+npx skills add baiyigali/skills --skill it-hotspot-article
+```
+
 ### Pipeline / 组合用法
 
-The two skills chain into an end-to-end pipeline: **analyze a market → generate the report → publish to WeChat in one step.**
+The skills chain into an end-to-end pipeline: **chase a hot topic (or analyze a market) → generate the article/report → publish to WeChat in one step.**
 
-两个技能可以串联成完整流水线：**竞品分析出稿 → 一键发布公众号草稿箱**。
+三个技能可以串联成完整流水线：**追热点出稿（或竞品分析出稿）→ 一键发布公众号草稿箱**。
 
 ```text
-competitor-analysis-report ──▶ .md + .png ──▶ wechat-article-publish ──▶ 草稿箱
+it-hotspot-article ─────────▶ .md + .png ──┐
+                                           ├──▶ wechat-article-publish ──▶ 草稿箱
+competitor-analysis-report ──▶ .md + .png ─┘
 ```
 
 ## Install / 安装说明
@@ -50,6 +62,8 @@ skills/
 │   └── references/
 │       └── report-template.md   # 12-section report template & hard rules
 ├── wechat-article-publish/
+│   └── SKILL.md
+├── it-hotspot-article/
 │   └── SKILL.md
 └── assets/                      # images (WeChat QR code, etc.)
 ```
