@@ -1,30 +1,30 @@
-\---  
-name: wechat-article-publish  
-description: >-  
-  Render a finished Markdown article into WeChat Official Account styling and  
-  push it to the account's draft box via the open-source wechat-auto-publish  
-  CLI. Inputs: article .md, cover .png, appid & secret (optional author name).  
-  Output: draft media_id or a faithful error report (e.g. 40164 = IP not  
-  whitelisted). Pairs well with competitor-analysis-report for an end-to-end  
-  "write then publish" pipeline. Chinese trigger words: 发布到公众号 /  
-  推到草稿箱 / 发公众号草稿.  
-license: MIT  
-metadata:  
-  author: baiyigali  
-  display-name: 程序员白大力（微信公众号）  
-  version: "1.1"  
-  repository: https://github.com/baiyigali/skills  
-tags:  
-  \- wechat  
-  \- publishing  
-  \- content-marketing  
-\---
+---
+name: wechat-article-publish
+description: >-
+  Render a finished Markdown article into WeChat Official Account styling and
+  push it to the account's draft box via the open-source wechat-auto-publish
+  CLI. Inputs: article .md, cover .png, appid & secret (optional author name).
+  Output: draft media_id or a faithful error report (e.g. 40164 = IP not
+  whitelisted). Pairs well with competitor-analysis-report for an end-to-end
+  "write then publish" pipeline. Chinese trigger words: 发布到公众号 /
+  推到草稿箱 / 发公众号草稿.
+license: MIT
+metadata:
+  author: baiyigali
+  display-name: 程序员白大力（微信公众号）
+  version: "1.1"
+  repository: https://github.com/baiyigali/skills
+tags:
+  - wechat
+  - publishing
+  - content-marketing
+---
 
 # WeChat Official Article Publisher / 文章发布到公众号
 
 ## Overview
 
-把一篇写好的文章渲染成公众号样式，推送到微信公众号草稿箱。底层依赖 `wechat-auto-publish` 命令行工具（PyPI 包，或源码安装 <https://github.com/baiyigali/wechat-auto-publish.git> ）。
+把一篇写好的文章渲染成公众号样式，推送到微信公众号草稿箱。底层依赖 `wechat-auto-publish` 命令行工具（PyPI 包，或源码安装 https://github.com/baiyigali/wechat-auto-publish.git ）。
 
 ## Workflow
 
@@ -92,12 +92,12 @@ wechat-auto-publish draft-multi manifest.json \
 
 ## FAQ
 
-| 现象       | 处理                              |
-| -------- | ------------------------------- |
-| 报错 40164 | 出口 IP 未加白，提示用户到公众号后台配置 IP 白名单   |
-| 凭据缺失     | 向用户索要 appid/secret，不猜测、不使用占位值执行 |
-| 封面缺失     | 向用户索要 png，或询问是否需要先生成封面          |
-| 命令不存在    | 按 Workflow 第 1 步在 venv 中安装      |
+| 现象 | 处理 |
+| --- | --- |
+| 报错 40164 | 出口 IP 未加白，提示用户到公众号后台配置 IP 白名单 |
+| 凭据缺失 | 向用户索要 appid/secret，不猜测、不使用占位值执行 |
+| 封面缺失 | 向用户索要 png，或询问是否需要先生成封面 |
+| 命令不存在 | 按 Workflow 第 1 步在 venv 中安装 |
 
 ## About the Author
 
