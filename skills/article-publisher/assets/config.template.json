@@ -1,0 +1,11 @@
+{
+  "publish_api_url": "http://your-site.com/articles/api/create/",
+  "publish_token": "your-token-here",
+  "r2_endpoint": "https://xxxx.r2.cloudflarestorage.com",
+  "r2_access_key": "your-access-key-id",
+  "r2_secret_key": "your-secret-access-key",
+  "r2_bucket": "your-bucket-name",
+  "r2_public_base": "https://pub-xxxx.r2.dev",
+  "r2_key_prefix": "covers",
+  "articles_dir": "/path/to/your/articles"
+}
