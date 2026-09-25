@@ -118,6 +118,10 @@ python3 scripts/gate.py "文章路径.md" --min-chars 800
 
 ## 依赖关系
 
-各写作技能（competitor-analysis-report / it-hotspot-article / legal-hotspot-article / policy-interpretation-article）在正文落盘后调用本技能。
+本技能**独立、可选**：写作技能（competitor-analysis-report / it-hotspot-article / legal-hotspot-article / policy-interpretation-article）只产出 .md，不感知也不调用本技能，没有封面也一样能成文。
 
-若本技能未安装：写作技能应提示用户安装；紧急情况按内联简版规则执行（无文字、写实、同名 png、本地引用），并在收尾说明中标注「未走统一封面技能」。
+任何**已落盘的 md 文章**都可以单独、事后调用本技能补封面，新旧不限。典型组合用法：
+
+```text
+写作技能 ──▶ .md ──▶（可选）article-cover-image ──▶（可选）wechat-article-publish
+```

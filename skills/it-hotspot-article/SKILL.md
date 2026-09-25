@@ -8,9 +8,8 @@ description: >-
   communities > Zhihu > Weibo), IT-relevance filtering (heat, technical angle,
   common misconceptions, sensitivity red lines), and fixed-template article
   writing (event recap, technical deep-dive, three common misconceptions,
-  hands-on guide, conclusion with hashtags). Generates a cinematic
-  photorealistic cover image saved as a same-named PNG next to the article and
-  referenced by local relative path. Professional tone guaranteed: no
+  hands-on guide, conclusion with hashtags). Outputs a Markdown file only.
+  Professional tone guaranteed: no
   clickbait, no manufactured contrast. Chinese trigger words: IT热点 /
   技术热点 / 热点文章 / 追热点写文章.
 license: MIT
@@ -36,7 +35,7 @@ tags:
 
 ### 1. 启动：确认参数（只问一次，缺省全自主）
 
-- **交付目录**：询问一次文章要保存到哪里。用户未指定时推荐默认 `/Users/baiyigali/workspace/articles/it技术热点`（不存在则创建）。
+- **交付目录**：询问一次文章要保存到哪里。用户未指定时默认保存到当前工作目录下的 `articles/it技术热点`（不存在则创建）。**不得写死带用户名或工具专属的绝对路径。**
 - **指定事件**：用户若已点名某热点事件，跳过选题直接从该事件进入写作；未指定则自主走第 2、3 步选题。
 - **篇数**：默认 1 篇。用户要求多篇（如"批量来 8 篇"）时按「批量模式」执行（见文末）。
 
@@ -94,17 +93,10 @@ tags:
 - 输出为 md 文档，禁止输出 word doc/docx。
 - **加粗片段规则**：md 中加粗片段的开头、结尾不得包含标点符号（如禁止加粗片段以'：、。'等开头、结尾）。
 
-### 5. 封面图生成
-
-1. 先构思提示词（不输出到正文），要求：结合文章内容；如有人物用中国人/亚洲人；**画面中不含任何文字**；电影镜头质感、高画质、写实主义；专业长英文提示词。准备 2 个不同版本。
-2. 用 ImageGen 按提示词生成封面（如 `size: 1536x1024`，`style: realistic`），保存为 .png，**文件名与文章文件名同名**，放在文章同级目录。
-3. **封面引用用本地相对路径**，在文章开头标题下方插入 `![封面](<文件名>.png)`。不要上传资料库取云 URL——媒体资产跟随目标平台：发布到公众号时由 wechat-article-publish 自动把本地图片上传转存到微信 CDN 并替换地址（需 wechat-publish ≥ 1.0.1）。
-4. 本地文件即备份：png 与 md 同目录同名存放，无需额外云端备份步骤。
-
-### 6. 收尾
+### 5. 收尾
 
 - 文章以话题标签收尾，**不附加任何署名、推广或引导关注行**。
-- 用 present_files 将 .md 与 .png 一并呈现给用户。
+- 用 present_files 将 .md 呈现给用户。
 - 如需发布到公众号，提示用户可配合 wechat-article-publish 技能推送草稿箱。
 
 ## 批量模式
@@ -121,5 +113,4 @@ tags:
 | --- | --- |
 | 近 72 小时无合适热点 | 放宽到 7 天内并如实告知用户时效性；仍无则报告并请示换方向 |
 | 热点事件涉敏感 | 直接排除，换下一候选，不尝试擦边 |
-| 封面上传超 1MB | 先 sips 压缩再上传（见第 5 步） |
 | 多源信息冲突 | 以官方公告/权威媒体为准，冲突点在文中标注说明 |
