@@ -15,25 +15,28 @@
 
 ## 文章结构
 
-1. **标题**：爆款公众号标题，抓人眼球
+1. **标题**：准确概括政策变化与实际影响，不做标题党
 2. **引言**：从场景/现象切入，抛出问题
 3. **背景与变化**：为什么现在出这个政策？之前是什么样的？
 4. **核心变化**：挑1-2个最关键的点深入讲透
 5. **实际影响**：对普通人/企业有什么影响？
 6. **实操指引**：现在该怎么办？
 7. **结尾**：有观点、有思考
+8. **封面**：正文落盘后调用 `article-cover-image` 技能生成，本地相对路径引用
 
 ## 文件结构
 
 ```
-policy-interpretation-writing/
+policy-interpretation-article/
 ├── SKILL.md                    # 主工作流程
-├── references/
-│   ├── writing-style.md        # 写作风格指南
-│   └── article-structure.md    # 文章结构模板
-├── scripts/                    # 脚本（可选）
-└── assets/                     # 资源文件（可选）
+└── references/
+    ├── writing-style.md        # 写作风格指南
+    └── article-structure.md    # 文章结构模板
 ```
+
+## 依赖
+
+封面环节依赖 `article-cover-image` 技能（同一仓库）。未安装时写作技能会提示安装，紧急情况下走内联简版规则。
 
 ## 适用场景
 
