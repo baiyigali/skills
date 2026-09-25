@@ -36,16 +36,26 @@ Chase real-time domestic IT/internet trending events and turn them into a publis
 npx skills add baiyigali/skills --skill it-hotspot-article
 ```
 
+### 4. `article-cover-image` — 文章封面图生成（共用收尾环节）
+
+Generate a cinematic, text-free cover image for a **finished** Markdown article and wire it back into the `.md` by local relative path. A hard gate script (`scripts/gate.py`) refuses to run until the article is complete on disk — ordering is enforced by exit code, not by the model's good manners. Outputs `<name>.png`, `<name>-prompts.md` and a `.cover-log.md` line for cross-issue dedup.
+
+为**已写完并落盘**的文章生成电影感写实封面：先跑硬闸门校验文章真的写完（首行 H1、字数达标、文末话题标签、无 placeholder 假链接），不通过直接退出；再提炼本期独有画面 → 拟 2 版长英文提示词落盘 → 出图转真实 PNG → 同名落盘 → 回写本地引用 → 记录画面供跨期查重。所有写作技能共用这一份规则。
+
+```bash
+npx skills add baiyigali/skills --skill article-cover-image
+```
+
 ### Pipeline / 组合用法
 
-The skills chain into an end-to-end pipeline: **chase a hot topic (or analyze a market) → generate the article/report → publish to WeChat in one step.**
+The skills chain into an end-to-end pipeline: **chase a hot topic (or analyze a market) → write the article → generate the cover → publish to WeChat in one step.**
 
-三个技能可以串联成完整流水线：**追热点出稿（或竞品分析出稿）→ 一键发布公众号草稿箱**。
+技能可以串联成完整流水线：**追热点出稿（或竞品分析出稿）→ 生成封面 → 一键发布公众号草稿箱**。
 
 ```text
-it-hotspot-article ─────────▶ .md + .png ──┐
-                                           ├──▶ wechat-article-publish ──▶ 草稿箱
-competitor-analysis-report ──▶ .md + .png ─┘
+it-hotspot-article ─────────▶ .md ─┐
+                                   ├──▶ article-cover-image ──▶ .md + .png ──▶ wechat-article-publish ──▶ 草稿箱
+competitor-analysis-report ─▶ .md ─┘
 ```
 
 ## Install / 安装说明
@@ -65,6 +75,10 @@ skills/
 │   └── SKILL.md
 ├── it-hotspot-article/
 │   └── SKILL.md
+├── article-cover-image/
+│   ├── SKILL.md
+│   └── scripts/
+│       └── gate.py             # hard gate: blocks cover generation until the article is finished
 └── assets/                      # images (WeChat QR code, etc.)
 ```
 
@@ -77,7 +91,7 @@ Focus: AI product analysis, agent engineering, content automation. Publishing a 
 专注 AI 产品分析与智能体工程，公众号持续更新「竞品分析报告」系列（已覆盖 AI Agent、人形机器人、AI 编程助手、AI 视频等赛道）。
 
 <p align="center">
-  <img src="assets/wechat-qrcode.png" alt="微信公众号：程序员白大力" width="180">
+  <img src="assets/wechat-qrcode.png" alt="微信公众号：程序员白大力" width="320">
 </p>
 <p align="center"><sub>WeChat Official Account / 微信公众号：程序员白大力 — scan for the full report series / 扫码获取完整报告系列</sub></p>
 
