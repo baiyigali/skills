@@ -127,6 +127,7 @@ config.local.*
 # ===== 日志 / 临时产物 =====
 *.log
 logs/
+output/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
