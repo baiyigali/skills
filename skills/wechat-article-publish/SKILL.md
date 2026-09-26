@@ -101,6 +101,34 @@ wechat-auto-publish draft-multi manifest.json \
 - 旧版（< 1.0.3）无此命令时的降级方案：用 `wechat_auto_publish.pipeline.render` 先渲染每篇，再直接调用底层库 `wechat_publish.push_articles(articles=[...])`（上限同为 8 篇）
 - 凭据参数与 `draft` 完全一致；同样只在本次调用中使用，不写入任何文件
 
+### 4.2 多账号与凭据文件（推荐，避免推错号）
+
+同一台机器可能要发多个公众号。把凭据集中放在一个 **不进任何 git 仓库** 的 JSON 文件里，按账号名调用：
+
+```json
+{
+  "default": "法啊",
+  "accounts": {
+    "法啊":       { "appid": "wx...", "secret": "...", "author": "法啊" },
+    "极速法考":   { "appid": "wx...", "secret": "...", "author": "极速法考" },
+    "程序员白大力": { "appid": "wx...", "secret": "...", "author": "程序员白大力" }
+  }
+}
+```
+
+```bash
+wechat-auto-publish draft-multi manifest.json \
+  --config <仓库外的路径>/wechat-accounts.json --account 法啊
+```
+
+- 凭据来源优先级：命令行 `--appid/--secret` > config 里指定账号 > config 的 `default`
+- **发布前必须先跟用户确认目标公众号是哪一个**；不同号的内容定位不同（如法律普法 vs IT 技术），推错号等于白干
+- config 文件不要放在任何 git 仓库内，也不要写进日志或回复正文
+
+### 4.3 执行耗时
+
+多图文（尤其 8 篇）要渲染 8 份 HTML + 上传 8 张封面，**通常超过 120 秒**。在会被超时的环境里执行时，必须显式放长超时或改为后台执行，否则进程会被 SIGTERM 杀掉（表现为 exit 137、无输出）。
+
 ### 5. 结果交付
 
 - **成功**：报告文章标题与草稿 `media_id`。
@@ -111,7 +139,10 @@ wechat-auto-publish draft-multi manifest.json \
 
 | 现象 | 处理 |
 | --- | --- |
-| 报错 40164 | 出口 IP 未加白，提示用户到公众号后台配置 IP 白名单 |
+| `40164 invalid ip` | 出口 IP 未加白。每个公众号白名单独立，把报错里的 IP 加到目标号白名单后重试 |
+| `40125 invalid appsecret` | AppSecret 与 AppID 不匹配：抄错、已重置或未启用。让用户到后台重置 AppSecret 取新值 |
+| `40013 invalid appid` | AppID 不存在（通常抄错）。40013=号不存在，40125=号存在但密钥不对 |
+| 命令被中断（exit 137 / 无输出） | 多图文耗时过长被超时杀掉，放长超时或后台跑 |
 | 凭据缺失 | 向用户索要 appid/secret，不猜测、不使用占位值执行 |
 | 封面缺失 | 向用户索要 png，或询问是否需要先生成封面 |
 | 命令不存在 | 按 Workflow 第 1 步在 venv 中安装 |
