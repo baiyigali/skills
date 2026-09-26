@@ -46,16 +46,28 @@ Generate a cinematic, text-free cover image for a **finished** Markdown article 
 npx skills add baiyigali/skills --skill article-cover-image
 ```
 
+### 5. `tech-sharing-article` — 技术实践经验分享写文
+
+Turn first-hand engineering practice — real decisions, trade-off comparisons, postmortems, hardening checklists — into a systematic, publish-ready WeChat tech-sharing article: four-phase pipeline (practice inventory & topic selection → outline → fact-check gate → fixed-template writing). The fact-check gate is non-skippable: every external factual claim (platform policies, regulations, parameters, dates) requires multi-source cross-verification; personal experience is anchored as "实测" and never fabricated.
+
+把真实项目实践（决策过程、方案对比、踩坑复盘、加固清单）写成体系化的技术分享公众号文章：四阶段流水线（实践素材盘点选题 → 框架设计 → 事实核查 → 固定模板撰写）。事实核查为硬性环节：外部事实性论断必须多源交叉验证，亲历实操以「实测」锚定，绝不虚构经历。结尾附参考文章（只写标题）与话题标签，专业调性优先。只写正文，不配封面。
+
+```bash
+npx skills add baiyigali/skills --skill tech-sharing-article
+```
+
 ### Pipeline / 组合用法
 
-The skills chain into an end-to-end pipeline: **chase a hot topic (or analyze a market) → write the article → generate the cover → publish to WeChat in one step.**
+The skills chain into an end-to-end pipeline: **chase a hot topic (or analyze a market, or share a real practice) → write the article → generate the cover → publish to WeChat in one step.**
 
-技能可以串联成完整流水线：**追热点出稿（或竞品分析出稿）→ 生成封面 → 一键发布公众号草稿箱**。
+技能可以串联成完整流水线：**追热点出稿（或竞品分析、技术分享出稿）→ 生成封面 → 一键发布公众号草稿箱**。
 
 ```text
 it-hotspot-article ─────────▶ .md ─┐
                                    ├──▶ article-cover-image ──▶ .md + .png ──▶ wechat-article-publish ──▶ 草稿箱
-competitor-analysis-report ─▶ .md ─┘
+competitor-analysis-report ─▶ .md ─┤
+                                   │
+tech-sharing-article ───────▶ .md ─┘
 ```
 
 ## Install / 安装说明
