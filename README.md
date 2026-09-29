@@ -56,6 +56,16 @@ Turn first-hand engineering practice — real decisions, trade-off comparisons, 
 npx skills add baiyigali/skills --skill tech-sharing-article
 ```
 
+### 6. `website-health-report` — 网站健康体检报告生成器
+
+Deep-audit any website (HTTPS/TLS/DNS, page signals, up to ~10 sampled pages) and produce a formal, ready-to-forward PDF report: branded cover, executive summary, per-issue evidence / business impact / concrete fix, FAQ. Read-only probing, no intrusion; mandatory cross-re-verification and scare-word scanning before delivery. Brand info (cover line, footer, "about" block) is configurable via `brand.json` and can be removed with `--brand none`.
+
+对任意网站做深度体检并产出可直接转发/打印的正式 PDF 报告：品牌封面、结论摘要、逐项问题附检测证据/业务影响/修复方向、FAQ。全程只读无侵入；出稿前强制交叉复测与措辞扫描。品牌信息通过 `brand.json` 配置，可一键去除。
+
+```bash
+npx skills add baiyigali/skills --skill website-health-report
+```
+
 ### Pipeline / 组合用法
 
 The skills chain into an end-to-end pipeline: **chase a hot topic (or analyze a market, or share a real practice) → write the article → generate the cover → publish to WeChat in one step.**
@@ -91,6 +101,12 @@ skills/
 │   ├── SKILL.md
 │   └── scripts/
 │       └── gate.py             # hard gate: blocks cover generation until the article is finished
+├── website-health-report/
+│   ├── SKILL.md
+│   ├── brand.json              # brand block shown in the report (cover/footer/about), removable via --brand none
+│   ├── scripts/                # audit.py (deep probe) / gen_report.py (HTML) / html2pdf.py (PDF, cross-platform CJK fonts)
+│   ├── templates/              # report_template.html
+│   └── references/             # wording & evidence discipline (anti-乌龙 rules)
 └── assets/                      # images (WeChat QR code, etc.)
 ```
 

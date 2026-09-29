@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__FULL_NAME__ 网站健康体检报告</title><style>
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:860px;margin:0 auto;padding:36px 22px;color:#222;line-height:1.75;background:#fff}
+.head{background:linear-gradient(135deg,#2c5aa0,#3d7bc4);border-radius:14px;color:#fff;padding:28px 26px 22px;margin-bottom:22px}
+.head h1{font-size:21px;margin:0 0 8px}
+.head .sub{color:rgba(255,255,255,.85);font-size:13px}
+.head .brandline{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.75);margin-bottom:14px;text-transform:uppercase}
+.sev{display:inline-block;padding:2px 10px;border-radius:10px;font-size:12px;font-weight:600}
+.sev-h{background:#fdecea;color:#b03a2e}.sev-m{background:#fdf3e3;color:#b9770e}.sev-l{background:#eef5ee;color:#3a7d44}
+.issue{border:1px solid #e3e8f0;border-left:4px solid #ccc;border-radius:10px;padding:16px 20px;margin:14px 0}
+.issue[data-sev="高"]{border-left-color:#b03a2e}
+.issue[data-sev="中"]{border-left-color:#b9770e}
+.issue[data-sev="低"]{border-left-color:#3a7d44}
+.issue h3{margin:0 0 8px;font-size:15px}
+.issue .ev{background:#f5f6f8;border-radius:6px;padding:8px 12px;font-size:12.5px;color:#555;margin:8px 0}
+.issue .im{font-size:13.5px}
+.fx{background:#f0f7f2;border:1px solid #cfe5d6;border-radius:6px;padding:8px 12px;font-size:12.5px;color:#1a5c2e;margin-top:8px}
+.note{background:#f7f8fa;border-left:3px solid #2c5aa0;padding:10px 14px;font-size:13px;margin:14px 0}
+.faq td{font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;margin:12px 0}
+th,td{border:1px solid #ddd;padding:6px 10px;text-align:left;vertical-align:top}
+th{background:#f0f4fa}
+code{background:#f2f2f2;padding:1px 5px;border-radius:3px;font-size:12px}
+</style></head><body>
+<div class="head">
+__BRANDLINE__
+<h1>__FULL_NAME__ · 网站健康体检报告</h1>
+<div class="sub">__SUB_META__</div>
+</div>
+<div class="note"><b>结论摘要：</b>本次按 __CHECKS_TOTAL__ 项标准对贵机构官网进行了公开信息层面的技术体检，发现 <b>__N_HIGH__ 项较严重问题</b>、__N_MID__ 项中等问题、__N_LOW__ 项改善项。核心问题：<b>__FINDING__</b>。所有问题均不影响网站日常使用，但会在客户信任与搜索排名层面持续产生流失。本报告免费提供，可转交任何技术人员照单修复。</div>
+<h2>问题详情</h2>
+__ISSUES_HTML__
+__EXTRA_HTML__
+<h2>检测方法与边界说明</h2>
+<div class="note">本报告基于公开网络访问层面的检查（HTTP/HTTPS 连接、证书握手、页面源码元信息、公开收录快照），<b>不涉及登录、提交表单或任何侵入性测试</b>。检测于 __DATE__ 执行，站点状态随时可能变化；个别项目（如动态渲染内容、境内网络下的证书表现）可能存在环境差异，已在上文标注"需人工复核"的项以浏览器实测为准。</div>
+__FAQ_HTML__
+<div class="note" style="margin-top:22px"><b>下一步：</b>如您对报告中任何一项有疑问，欢迎回复邮件或来电，我们可逐项为您演示检测过程；如需我们协助修复，可在确认报告内容后再谈，无任何前期费用。</div>
+__ABOUT_HTML__
+</body></html>
