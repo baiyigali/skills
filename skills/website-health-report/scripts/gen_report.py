@@ -53,9 +53,9 @@ def main():
 
     n_high = sum(1 for i in issues if i["severity"] == "高")
     n_mid = sum(1 for i in issues if i["severity"] == "中")
-    n_low = sum(1 for i in issues if i["severity"] == "低")
+    n_low = sum(1 for i in issues if i["severity"] in ("低", "改善项"))
 
-    sev_tag = {"高": ("sev-h", "较严重"), "中": ("sev-m", "中等"), "低": ("sev-l", "改善项")}
+    sev_tag = {"高": ("sev-h", "较严重"), "中": ("sev-m", "中等"), "低": ("sev-l", "改善项"), "改善项": ("sev-l", "改善项")}
     issues_html = ""
     for i, p in enumerate(issues, 1):
         cls, label = sev_tag[p["severity"]]
