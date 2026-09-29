@@ -13,6 +13,7 @@ license: MIT
 metadata:
   author: baiyigali
   display-name: 程序员白大力（微信公众号）
+  homepage: https://www.pipecms.com
   version: "1.0"
 ---
 
