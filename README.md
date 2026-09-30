@@ -66,6 +66,26 @@ Deep-audit any website (HTTPS/TLS/DNS, page signals, up to ~10 sampled pages) an
 npx skills add baiyigali/skills --skill website-health-report
 ```
 
+### 7. `classic-retelling-studio` — 公版经典现代改编（中英双轨）
+
+Rewrite a public-domain classic as a modern novel (Chinese urban / American English): keep the original's skeleton and iconic scenes, rebuild characters, geography, professions and core imagery with zero traces of the source names, write to web-novel chapter pacing, and deliver as a "manuscript + appendix" pair. Five stages: source inventory → casting & naming → structure → prose discipline → full human read-through self-check.
+
+把公版经典长篇改写为现代背景小说（中文都市 / 英文美国）：保留原著骨架与标志性场景，人物与姓名彻底去原著化，按网文单章节奏成稿（中文 ≤3000 字 / 英文 ≈2000 词），交付「正文 + 附录」两件套。五阶段：读原著建三张清单 → 人物与命名（零原著痕迹）→ 结构（章数对应原著部数）→ 写法（原创散文、无元叙述、首尾意象闭环）→ 人工通读自查（时间线/地理/年龄/指代/关系）。只管写作，不管上线发布。
+
+```bash
+npx skills add baiyigali/skills --skill classic-retelling-studio
+```
+
+### 8. `novel-retelling-writing` — 经典小说现代改编写作流程
+
+End-to-end writing workflow for adapting a public-domain classic into a modern-setting novel: pre-write confirmation (scale / language / setting city), source deconstruction, modern transplant mapping, thorough name localization with family-tree review, mobile-reading chapter splitting, and a final self-check. Writing only — no publishing.
+
+把公版经典小说改编成现代背景小说（retelling）的完整写作流程：改编前确认（规模/语言/背景城市）、原著解构、现代移植映射、人名彻底本地化与家族树审查、手机阅读节奏的章节切分、成稿自检清单、正文与附录分离。含《安娜·卡列尼娜》→《她的名字叫安澜》实测踩过的坑。只管改编写作本身，不管上线发布。
+
+```bash
+npx skills add baiyigali/skills --skill novel-retelling-writing
+```
+
 ### Pipeline / 组合用法
 
 The skills chain into an end-to-end pipeline: **chase a hot topic (or analyze a market, or share a real practice) → write the article → generate the cover → publish to WeChat in one step.**
@@ -107,6 +127,10 @@ skills/
 │   ├── scripts/                # audit.py (deep probe) / gen_report.py (HTML) / html2pdf.py (PDF, cross-platform CJK fonts)
 │   ├── templates/              # report_template.html
 │   └── references/             # wording & evidence discipline (anti-乌龙 rules)
+├── classic-retelling-studio/
+│   └── SKILL.md                # public-domain classic → modern novel (CN urban / US English)
+├── novel-retelling-writing/
+│   └── SKILL.md                # retelling writing workflow (Chinese pipeline, incl. AK case notes)
 └── assets/                      # images (WeChat QR code, etc.)
 ```
 
